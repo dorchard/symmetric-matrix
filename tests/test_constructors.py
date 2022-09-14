@@ -31,7 +31,7 @@ def test_identity():
 def test_addition():
   singleton = smatrix.identity(1)
   empty = smatrix.zeros(1)
-  assert(smatrix.add(singleton, empty) == singleton)
+  assert(smatrix.add(singleton, empty).data == singleton.data)
 
   doubled_identity = [[2]]
   assert(smatrix.add(singleton, singleton).data == doubled_identity)

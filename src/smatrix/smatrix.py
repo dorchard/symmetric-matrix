@@ -38,10 +38,6 @@ def identity(shape: int):
     data = [[1.0] + [0.0 for _ in range(0, row_size - 1)] for row_size in row_sizes]
     return Smatrix(shape, data)
 
-# TODO temporary
-def add(mat1, mat2):
-    return mat1
-
 class Smatrix:
     # Attributes
     shape: int        = 0
@@ -67,3 +63,25 @@ class Smatrix:
         # If we have reached here then the data invariant is met
         self.shape = shape
         self.data  = data
+
+def add(mat1: Smatrix, mat2: Smatrix) -> Smatrix:
+    """
+    Add two matrices
+
+    Parameters
+    ----------
+    mat1: Smatrix
+    mat2: Smatrix
+
+    Returns
+    -------
+    out : Smatrix
+        Pointwise addition of two symmetric matrices
+    """
+    if mat1.shape == mat2.shape:
+        # Zip the rows, and zip the elements
+        data = [[elem1 + elem2 for elem1, elem2 in zip(row1, row2)]
+                                for row1, row2 in zip(mat1.data, mat2.data)]
+        return Smatrix(mat1.shape, data)
+    else:
+        raise ValueError('Shape mismatch', 'Cannot add symmetric matrices of different size.')
