@@ -58,7 +58,7 @@ class Smatrix:
         # Check invariants on relationship between shape and data
         for row, size in zip(data, range(shape, 0, -1)):
             if len(row) != size:
-                raise RuntimeError('Invalid data', 'Row of length ' + str(len(row))
+                raise ValueError('Invalid data', 'Row of length ' + str(len(row))
                                                  + ' should be of length ' + str(size))
         # If we have reached here then the data invariant is met
         self.shape = shape
