@@ -11,3 +11,19 @@ def test_constructors():
   two = smatrix.zeros(2)
   assert two.data == [[0, 0], [0]]
 
+def test_identity():
+  empty = smatrix.identity(0)
+  assert empty.data == []
+
+  singleton = smatrix.identity(1)
+  assert singleton.data == [[1]]
+  
+  two = smatrix.identity(2)
+  assert two.data == [[1, 0], [1]]
+  # Captures the idea of
+  # 1 0
+  # 0 1
+
+  three = smatrix.identity(3)
+  assert three.data == [[1, 0, 0], [1, 0], [1]]
+  

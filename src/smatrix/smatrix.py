@@ -1,5 +1,8 @@
 import typing
 
+def descending_range(upper: int):
+    return range(upper, 0, -1)
+
 def zeros(shape: int):
     """
     Return an symmetric matrix of given shape and type, filled with zeros.
@@ -13,10 +16,29 @@ def zeros(shape: int):
     out : Smatrix
         Zero matrix of given shape.
     """
-    row_sizes = range(shape, 0, -1)
+    row_sizes = descending_range(shape)
     zeros_data = [[0.0 for _ in range(0, row_size)] for row_size in row_sizes]
     return Smatrix(shape, zeros_data)
-    
+
+def identity(shape: int):
+    """
+    Return a symmetric identity matrix based on the shape (size) given.
+
+    Parameters
+    ----------
+    shape : int
+        Shape of the matrix
+
+    Returns
+    -------
+    out : Smatrix
+        Identity matrix of the given shape.
+    """
+    row_sizes = descending_range(shape)
+    data = [[1.0] + [0.0 for _ in range(0, row_size - 1)] for row_size in row_sizes]
+    return Smatrix(shape, data)
+
+
 class Smatrix:
     # Attributes
     shape: int        = 0
