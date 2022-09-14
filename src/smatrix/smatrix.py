@@ -38,6 +38,9 @@ def identity(shape: int):
     data = [[1.0] + [0.0 for _ in range(0, row_size - 1)] for row_size in row_sizes]
     return Smatrix(shape, data)
 
+# TODO temporary
+def add(mat1, mat2):
+    return mat1
 
 class Smatrix:
     # Attributes
