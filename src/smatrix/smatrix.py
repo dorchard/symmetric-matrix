@@ -1,4 +1,5 @@
 import typing
+import itertools
 
 def zeros(shape: int):
     """
@@ -42,3 +43,36 @@ class Smatrix:
         # If we have reached here then the data invariant is met
         self.shape = shape
         self.data  = data
+
+def transpose(m):
+    return m
+
+# (...this only works for 1,2,3-matrices... shhhhh)
+def transpose_alt(m):
+    l = m.shape
+    d = list(reversed(list(itertools.chain.from_iterable(m.data))))
+    if l > 0 and l % 2 == 0:
+        tmp = d[l//2 - 1]
+        d[l//2 - 1] = d[l//2]
+        d[l//2] = tmp
+    m.data = unflatten(d, l)
+    return m
+
+def unflatten(l, n):
+    """
+    Takes a flat list and a shape, and
+    attempts to create an smatrix of the requested shape.
+    """
+    ls = []
+    i = 0
+    j = 0
+    for el in l:
+        if j == 0:
+            ls.append([])
+        ls[i].append(el)
+        if j == (n-1) - i:
+            i += 1
+            j = 0
+        else:
+            j += 1
+    return ls
