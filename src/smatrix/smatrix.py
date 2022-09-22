@@ -1,5 +1,22 @@
 import typing
 
+def identity(shape: int):
+  """
+  Return a symmetric matrix that is an identity matrix of the given size
+
+  Parameters
+    ----------
+    shape : int
+        Shape of the matrix
+
+    Returns
+    -------
+    out : Smatrix
+  """
+  row_sizes = range(shape, 0, -1)
+  id_data = [[1.0] + [0.0 for _ in range(1, row_size)] for row_size in row_sizes]
+  return Smatrix(shape, id_data)
+
 def zeros(shape: int):
     """
     Return an symmetric matrix of given shape and type, filled with zeros.
@@ -16,7 +33,7 @@ def zeros(shape: int):
     row_sizes = range(shape, 0, -1)
     zeros_data = [[0.0 for _ in range(0, row_size)] for row_size in row_sizes]
     return Smatrix(shape, zeros_data)
-    
+
 class Smatrix:
     # Attributes
     shape: int        = 0
